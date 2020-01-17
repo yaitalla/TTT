@@ -4,7 +4,6 @@ import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider } from "baseui";
 
 import Tracker from "./Tracker";
-
 import Layout from "./components/Layout";
 
 const engine = new Styletron();
@@ -15,6 +14,7 @@ const App = () => {
       <BaseProvider theme={LightTheme}>
         <Layout>
           <Tracker />
+          
         </Layout>
       </BaseProvider>
     </StyletronProvider>
