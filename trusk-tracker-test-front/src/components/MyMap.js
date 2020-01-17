@@ -6,7 +6,7 @@ const MyMap = withScriptjs(withGoogleMap((props) =>{
     const [data, setData] = useState([]);
     useEffect(() => {
           setData(props.data);
-    });
+    }, [props.data]);
     
     return (
         

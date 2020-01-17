@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { Heading, HeadingLevel } from "baseui/heading";
-
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton } from 'baseui/modal';
 import DriversTable from "./components/DriversTable";
 import MyMap from './components/MyMap';
 const SOCKET_API_URL = "http://localhost:3000";
@@ -13,6 +13,7 @@ const parseDriverLocationToTableData = driversLocations =>
 
 const Tracker = () => {
   const [driversLocations, setDriversLocations] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const socket = io(SOCKET_API_URL);
@@ -22,7 +23,9 @@ const Tracker = () => {
     return socket.close;
   }, []);
 
-
+  const close = () => {
+    setIsOpen(false);
+  }
   return (
     <>
       <HeadingLevel>
@@ -37,6 +40,18 @@ const Tracker = () => {
         containerElement={<div style={{ height: `400px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
+      <Modal id={'yModalId'} onClose={close} isOpen={isOpen}>
+        <ModalHeader>Hello world</ModalHeader>
+        <ModalBody>
+          Proin ut dui sed metus pharetra hend rerit vel non mi.
+          Nulla ornare faucibus ex, non facilisis nisl. Maecenas
+          aliquet mauris ut tempus.
+        </ModalBody>
+        <ModalFooter>
+          <ModalButton onClick={close}>Cancel</ModalButton>
+          <ModalButton onClick={close}>Okay</ModalButton>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };
