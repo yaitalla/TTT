@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
 import { Heading, HeadingLevel } from "baseui/heading";
-import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton } from 'baseui/modal';
+import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from 'baseui/modal';
 import DriversTable from "./components/DriversTable";
 import MyMap from './components/MyMap';
+import { Context } from './reducer';
+import ModalTable from "./components/ModalTable";
 const SOCKET_API_URL = "http://localhost:3000";
 
 const parseDriverLocationToTableData = driversLocations =>
@@ -13,7 +15,7 @@ const parseDriverLocationToTableData = driversLocations =>
 
 const Tracker = () => {
   const [driversLocations, setDriversLocations] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+  const {store, dispatch} = useContext(Context)
 
   useEffect(() => {
     const socket = io(SOCKET_API_URL);
@@ -24,7 +26,7 @@ const Tracker = () => {
   }, []);
 
   const close = () => {
-    setIsOpen(false);
+    dispatch({type: "CLOSE_MODAL"})
   }
   return (
     <>
@@ -40,12 +42,20 @@ const Tracker = () => {
         containerElement={<div style={{ height: `400px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
-      <Modal id={'yModalId'} onClose={close} isOpen={isOpen}>
-        <ModalHeader>Hello world</ModalHeader>
+      <Modal size={SIZE.auto} id={'yModalId'} onClose={close} isOpen={store.openModal}>
+        <ModalHeader>Driver Information</ModalHeader>
         <ModalBody>
-          Proin ut dui sed metus pharetra hend rerit vel non mi.
-          Nulla ornare faucibus ex, non facilisis nisl. Maecenas
-          aliquet mauris ut tempus.
+          <ModalTable  data={store.vehicle[0]}></ModalTable>
+          <ModalTable  data={store.vehicle[1]}></ModalTable>
+          {/* {
+
+            store.vehicle.map((obj, i) => {
+               <ModalTable key={i} data={obj}></ModalTable>
+              // for(let key in obj){
+              //   console.log(key, obj)
+              // }
+            })
+          } */}
         </ModalBody>
         <ModalFooter>
           <ModalButton onClick={close}>Cancel</ModalButton>

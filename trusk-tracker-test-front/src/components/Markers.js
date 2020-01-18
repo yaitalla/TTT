@@ -1,20 +1,20 @@
-import React from "react";
+import React, {useContext}  from "react";
 import { Marker } from "react-google-maps"
 import axios from 'axios';
+import  {Context} from '../reducer';
 
 const rounder = (num) => {
     return (Math.round(num * 1000)/1000) //Marker component does not recognize floats with too many decimals
 }
-const clickOnMarker = (driverId) => {
-    let info = [];
-    axios.get('http://localhost:3000/tasks/'+driverId).then((res) => {
-        res.data.data.map(obj => {
-            info.push(obj)
-        })
-    });
-    console.log(info)
-}
+
 const Markers = ({def}) => {
+    const {dispatch} = useContext(Context)
+    const clickOnMarker = (driverId) => {
+        axios.get('http://localhost:3000/tasks/'+driverId).then((res) => {
+            dispatch({type: "OPEN_MODAL", vehicle: res.data.data})
+        });
+    }
+    
     return (
         <>
             {
