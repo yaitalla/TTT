@@ -1,6 +1,9 @@
 import { createContext } from 'react';
+// import io from "socket.io-client";
 
-export const initialState = {openModal: false, vehicle: [], theme: "light", filter: { label: "All", id: "#F0F8FF" }}
+export const ALL_DRIVERS = "All drivers"
+export const initialState = {openModal: false, vehicle: [], theme: "light", filter: { label: ALL_DRIVERS, id: "#F0F8FF" }}
+// const SOCKET_API_URL = "http://localhost:3000";
 
 export const Context = createContext();
 

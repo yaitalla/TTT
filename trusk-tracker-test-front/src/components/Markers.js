@@ -2,7 +2,7 @@ import React, {useContext}  from "react";
 import { Marker } from "react-google-maps"
 import axios from 'axios';
 import  {Context} from '../reducer';
-
+import {ALL_DRIVERS} from '../reducer';
 const rounder = (num) => {
     return (Math.round(num * 1000)/1000) //Marker component does not recognize floats with too many decimals
 }
@@ -19,7 +19,7 @@ const Markers = ({def}) => {
             {
                 
                 def.map((driver, i) => {
-                    if (store.filter.label === "All" || store.filter.label == driver[0]) {
+                    if (store.filter.label === ALL_DRIVERS || store.filter.label === driver[0]) {
                         return (
                             <Marker
                                 onClick={() => clickOnMarker(driver[0])}
@@ -30,7 +30,7 @@ const Markers = ({def}) => {
                             </Marker>
                         )
                     }
-                    
+                    return null;
                 })
             } 
         </>

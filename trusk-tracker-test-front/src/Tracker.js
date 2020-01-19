@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import io from "socket.io-client";
-import { Heading, HeadingLevel } from "baseui/heading";
 import { Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE } from 'baseui/modal';
 import DriversTable from "./components/DriversTable";
 import MyMap from './components/MyMap';
@@ -30,7 +29,6 @@ const Tracker = () => {
   }
   return (
     <>
-      
       <DriversTable data={parseDriverLocationToTableData(driversLocations)} />
       <MyMap
         isMarkerShown

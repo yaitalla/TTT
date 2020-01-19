@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import  {Context} from '../reducer';
 import { Select, SIZE } from "baseui/select";
+import {ALL_DRIVERS} from '../reducer';
 
 const DriverFilter = () => {
     const {store, dispatch} = useContext(Context)
@@ -14,7 +15,7 @@ const DriverFilter = () => {
                 placeholder="Select driver"
                 searchable={false}
                 options={[
-                    { label: "All", id: "#F0F8FF" },
+                    { label: ALL_DRIVERS, id: "#F0F8FF" },
                     { label: "driver1", id: "#FAEBD7" },
                     { label: "driver2", id: "#00FFFF" },
                     { label: "driver3", id: "#7FFFD4" },
