@@ -30,9 +30,7 @@ const Tracker = () => {
   }
   return (
     <>
-      <HeadingLevel>
-        <Heading styleLevel={5}>Drivers :</Heading>
-      </HeadingLevel>
+      
       <DriversTable data={parseDriverLocationToTableData(driversLocations)} />
       <MyMap
         isMarkerShown
@@ -47,15 +45,6 @@ const Tracker = () => {
         <ModalBody>
           <ModalTable  data={store.vehicle[0]}></ModalTable>
           <ModalTable  data={store.vehicle[1]}></ModalTable>
-          {/* {
-
-            store.vehicle.map((obj, i) => {
-               <ModalTable key={i} data={obj}></ModalTable>
-              // for(let key in obj){
-              //   console.log(key, obj)
-              // }
-            })
-          } */}
         </ModalBody>
         <ModalFooter>
           <ModalButton onClick={close}>Cancel</ModalButton>

@@ -4,8 +4,9 @@ import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, DarkTheme, BaseProvider } from "baseui";
 import  {reducer, initialState, Context } from './reducer';
 import Tracker from "./Tracker";
-import {Button, SHAPE} from 'baseui/button';
+import {Button, SIZE, SHAPE} from 'baseui/button';
 import Layout from "./components/Layout";
+import SelectInput from './components/SelectInput';
 
 const engine = new Styletron();
 const THEME = {
@@ -18,22 +19,24 @@ const App = () => {
   return (
     <Context.Provider value={{store, dispatch}} >
       <StyletronProvider value={engine}>
+        
         <BaseProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
           <Layout>
+            <Button
+                  size={SIZE.mini}
+                  shape={SHAPE.pill}
+                  onClick={() =>
+                    setTheme(theme === THEME.light ? THEME.dark : THEME.light)
+                  }
+              >
+                Toggle light/dark theme!
+              </Button>
             <Tracker />
-            
+            <SelectInput/>
           </Layout>
         </BaseProvider>
-        <Button
-          shape={SHAPE.pill}
-          onClick={() =>
-            setTheme(theme === THEME.light ? THEME.dark : THEME.light)
-          }
-      >
-        Toggle light/dark theme!
-      </Button>
+       
       </StyletronProvider>
-     
     </Context.Provider>
     
   );

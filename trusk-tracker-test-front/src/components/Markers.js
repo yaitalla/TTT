@@ -8,27 +8,31 @@ const rounder = (num) => {
 }
 
 const Markers = ({def}) => {
-    const {dispatch} = useContext(Context)
+    const {store, dispatch} = useContext(Context)
     const clickOnMarker = (driverId) => {
         axios.get('http://localhost:3000/tasks/'+driverId).then((res) => {
             dispatch({type: "OPEN_MODAL", vehicle: res.data.data})
         });
     }
-    
     return (
         <>
             {
+                
                 def.map((driver, i) => {
-                    return (
-                        <Marker
-                            onClick={() => clickOnMarker(driver[0])}
-                            label={driver[0]}
-                            title={driver[0]}
-                            key={i} 
-                            position={ { lat: rounder(driver[1]), lng: rounder(driver[2])} } ></Marker>
-                    )
+                    if (store.filter.label === "All" || store.filter.label == driver[0]) {
+                        return (
+                            <Marker
+                                onClick={() => clickOnMarker(driver[0])}
+                                label={driver[0]}
+                                title={driver[0]}
+                                key={i} 
+                                position={ { lat: rounder(driver[1]), lng: rounder(driver[2])} } >
+                            </Marker>
+                        )
+                    }
+                    
                 })
-            }
+            } 
         </>
     )
 }

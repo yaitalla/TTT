@@ -1,11 +1,16 @@
 import { createContext } from 'react';
 
-export const initialState = {openModal: false, vehicle: [], theme: "light"}
+export const initialState = {openModal: false, vehicle: [], theme: "light", filter: { label: "All", id: "#F0F8FF" }}
 
 export const Context = createContext();
 
 export const reducer =  (state, action) => {
     switch(action.type){
+        case "FILTER":
+            return {
+                ...state,
+                filter: action.filter
+            }
         case "LIGHT_THEME":
             return {
                 ...state,
