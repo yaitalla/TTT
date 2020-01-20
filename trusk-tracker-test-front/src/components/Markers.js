@@ -2,14 +2,16 @@ import React, {useContext}  from "react";
 import { Marker } from "react-google-maps"
 import axios from 'axios';
 import  {Context} from '../reducer';
+import SocketContext from '../sockets/context';
 import {ALL_DRIVERS} from '../reducer';
 const rounder = (num) => {
     return (Math.round(num * 1000)/1000) //Marker component does not recognize floats with too many decimals
 }
 
-const Markers = ({def}) => {
+const Markers = () => {
     const {store, dispatch} = useContext(Context)
-    const clickOnMarker = (driverId) => {
+  const { loc } = useContext(SocketContext);
+  const clickOnMarker = (driverId) => {
         axios.get('http://localhost:3000/tasks/'+driverId).then((res) => {
             dispatch({type: "OPEN_MODAL", vehicle: res.data.data})
         });
@@ -17,8 +19,8 @@ const Markers = ({def}) => {
     return (
         <>
             {
-                
-                def.map((driver, i) => {
+                loc ? 
+                loc.map((driver, i) => {
                     if (store.filter.label === ALL_DRIVERS || store.filter.label === driver[0]) {
                         return (
                             <Marker
@@ -31,7 +33,7 @@ const Markers = ({def}) => {
                         )
                     }
                     return null;
-                })
+                }) : null
             } 
         </>
     )

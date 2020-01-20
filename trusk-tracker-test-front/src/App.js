@@ -7,7 +7,7 @@ import Tracker from "./Tracker";
 import {Button, SIZE, SHAPE} from 'baseui/button';
 import Layout from "./components/Layout";
 import SelectInput from './components/SelectInput';
-
+import SocketProvider from './sockets';
 const engine = new Styletron();
 const THEME = {
   light: 'light',
@@ -31,7 +31,8 @@ const App = () => {
               >
                 Toggle light/dark theme!
               </Button>
-            <Tracker />
+              <SocketProvider><Tracker /></SocketProvider>
+            
             <SelectInput/>
           </Layout>
         </BaseProvider>
