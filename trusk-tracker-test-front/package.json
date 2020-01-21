@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^1.8.2",
     "axios": "^0.19.1",
-    "baseui": "^8.16.5",
+    "baseui": "^9.43.0",
+    "google-map-react": "^1.1.5",
+    "google-maps-react": "^2.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

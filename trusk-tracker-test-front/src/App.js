@@ -6,7 +6,6 @@ import  {reducer, initialState, Context } from './reducer';
 import Tracker from "./Tracker";
 import {Button, SIZE, SHAPE} from 'baseui/button';
 import Layout from "./components/Layout";
-import SelectInput from './components/SelectInput';
 import SocketProvider from './sockets';
 const engine = new Styletron();
 const THEME = {
@@ -18,12 +17,12 @@ const App = () => {
   const [theme, setTheme] = useState('light');
   return (
     <Context.Provider value={{store, dispatch}} >
-      <StyletronProvider value={engine}>
+      <StyletronProvider value={engine} theme={theme === 'light' ? LightTheme : DarkTheme}>
         
         <BaseProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
           <Layout>
             <Button
-                  size={SIZE.mini}
+                  size={SIZE.large}
                   shape={SHAPE.pill}
                   onClick={() =>
                     setTheme(theme === THEME.light ? THEME.dark : THEME.light)
@@ -33,7 +32,6 @@ const App = () => {
               </Button>
               <SocketProvider><Tracker /></SocketProvider>
             
-            <SelectInput/>
           </Layout>
         </BaseProvider>
        

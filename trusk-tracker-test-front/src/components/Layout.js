@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Block } from "baseui/block";
+import {useStyletron} from 'baseui';
 
-const Layout = ({ children }) => (
-  <Block width={["100vw", "100vw", "80vw"]} margin="0 auto">
-    {children}
-  </Block>
-);
+    const Layout = ({ children }) => {
+    const [css] = useStyletron();
+    return (
+        <Block className={css({border: '10px solid silver', borderRadius: '15px'})}
+            >
+          {children}
+        </Block>
+);}
 
 Layout.propTypes = {
   children: PropTypes.node
