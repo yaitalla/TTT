@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^1.8.2",
+    "@types/googlemaps": "^3.39.2",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.9.18",
     "axios": "^0.19.1",
     "baseui": "^9.43.0",
     "google-map-react": "^1.1.5",
@@ -15,7 +18,8 @@
     "react-scripts": "^3.3.0",
     "socket.io-client": "^2.2.0",
     "styletron-engine-atomic": "^1.4.0",
-    "styletron-react": "^5.2.0"
+    "styletron-react": "^5.2.0",
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "lint": "eslint --fix ./src/**/*.js",
