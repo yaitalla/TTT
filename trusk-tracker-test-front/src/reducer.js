@@ -2,6 +2,8 @@ import { createContext } from 'react';
 
 export const ALL_DRIVERS = "All drivers"
 export const initialState = {
+    zoom: 12,
+    center: { lat: 10.800, lng: 106.644 },
     openModal: false,
     vehicle: [],
     theme: "light",
@@ -21,12 +23,12 @@ export const reducer =  (state, action) => {
         case "LIGHT_THEME":
             return {
                 ...state,
-                theme: "light"
+                theme: "light",
             }
         case "DARK_THEME":
                 return {
                     ...state,
-                    theme: "dark"
+                    theme: "dark",
                 }
         case "OPEN_MODAL":
             return {

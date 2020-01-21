@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyledCell, StyledTable, Table } from "baseui/table";
-import {withStyle, useStyletron} from 'baseui';
+import { Table } from "baseui/table";
 
 const COLUMNS = ["#ID", "Latitude", "Longitude"];
 
