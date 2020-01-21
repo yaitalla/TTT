@@ -15,6 +15,11 @@ const SelectedCell = withStyle(StyledCell, props => ({
     color: props.$theme.colors.positive,
   }));
 
+  const DriverCell = withStyle(StyledCell, props => ({
+    ...props.$theme.typography.font400,
+    alignItems: 'center',
+  }));
+
 const MyTable = () => {
     const [css] = useStyletron();
     const {store, dispatch} = useContext(Context)
@@ -52,7 +57,7 @@ const MyTable = () => {
                             </StyledRow>
                             :
                             <StyledRow onClick={() => clicked(row[0])} className={"hoverable"} key={index}>
-                                <StyledCell>{row[0]}</StyledCell>
+                                <DriverCell>{row[0]}</DriverCell>
                                 <StyledCell>
                                     <Block>
                                     <Paragraph3 as="div">{row[1]}</Paragraph3>

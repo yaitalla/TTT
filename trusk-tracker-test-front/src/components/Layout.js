@@ -6,7 +6,7 @@ import {useStyletron} from 'baseui';
     const Layout = ({ children }) => {
     const [css] = useStyletron();
     return (
-        <Block className={css({width: '90vw', marginTop: '20px', border: '5px solid silver', borderRadius: '15px',})}
+        <Block className={css({width: '90vw', marginTop: '20px', borderRadius: '15px',})}
             >
           {children}
         </Block>

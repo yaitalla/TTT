@@ -13,7 +13,7 @@ body {
 }
 .hoverable:hover {
   cursor: pointer;
-  background-color: #887f7f;
+  background-color: grey;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
