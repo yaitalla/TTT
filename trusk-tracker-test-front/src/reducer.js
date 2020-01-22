@@ -7,7 +7,8 @@ export const initialState = {
     openModal: false,
     vehicle: [],
     theme: "light",
-    filter: { label: ALL_DRIVERS, id: "#F0F8FF" }}
+    filter: { label: ALL_DRIVERS, id: "#F0F8FF" }
+}
 
 
 
