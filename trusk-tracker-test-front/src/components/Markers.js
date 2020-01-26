@@ -1,22 +1,22 @@
-import React, {useContext}  from "react";
+import React, {useContext, useCallback}  from "react";
 import { Marker } from "react-google-maps"
 import axios from 'axios';
 import  {Context} from '../reducer';
 import SocketContext from '../sockets/context';
-import {ALL_DRIVERS} from '../reducer';
+import {ALL_DRIVERS, API_URL, OPEN_MODAL, LIGHT_THEME} from '../constants';
 import truckIcon from './truck-icon.png';
 const rounder = (num) => {
-    return (Math.round(num * 1000)/1000) //Marker component does not recognize floats with too many decimals
+    return (Math.round(num * 1000)/1000)
 }
 const Markers = () => {
     const {store, dispatch} = useContext(Context)
     const { loc } = useContext(SocketContext);
-    const clickOnMarker = (driverId) => {
-        axios.get('http://localhost:3000/tasks/'+driverId).then((res) => {
-            dispatch({type: "OPEN_MODAL", vehicle: res.data.data})
+    const clickOnMarker = useCallback((driverId) => {
+        axios.get(API_URL + driverId).then((res) => {
+            dispatch({type: OPEN_MODAL, vehicle: res.data.data})
         });
-    }
-    const labelColor = store.theme === "light" ? "black" : "white";
+    }, [dispatch])
+    const labelColor = store.theme === LIGHT_THEME ? "black" : "white";
     return (
         <>
             {

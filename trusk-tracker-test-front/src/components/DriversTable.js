@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Table } from "baseui/table";
+import { COLUMNS } from '../constants';
 
-const COLUMNS = ["#ID", "Latitude", "Longitude"];
 
 const DriversTable = ({ data }) => <Table columns={COLUMNS} data={data} />;
 

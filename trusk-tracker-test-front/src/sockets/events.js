@@ -14,7 +14,6 @@ export const parseDriverLocationToTableData = (driversLocations) =>
         setValue((state) => {
             return {...state, loc}
         })
-        // dispatch({type: "UPDATE_LOC", location: loc})
   });
 };
 

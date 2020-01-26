@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import  {Context} from '../reducer';
 import { Select, SIZE } from "baseui/select";
 
 const DriverFilter = () => {
     const {store, dispatch} = useContext(Context)
-    const selectDriver = (params) => {
+    const selectDriver = useCallback((params) => {
         dispatch({type: "FILTER", filter: params.value[0]})
-    }
+    }, [dispatch])
     return (
         <>
             <Select

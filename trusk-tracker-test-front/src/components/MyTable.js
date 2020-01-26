@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { StyledCell, StyledTable, StyledHead,
     StyledHeadCell, StyledBody, StyledRow } from "baseui/table";
 import {withStyle, useStyletron} from 'baseui';
@@ -6,6 +6,7 @@ import SocketContext from '../sockets/context';
 import { Paragraph3 } from 'baseui/typography';
 import {Block} from 'baseui/block';
 import { Context } from '../reducer';
+import { FILTER } from '../constants';
 
 
 const SelectedCell = withStyle(StyledCell, props => ({
@@ -24,9 +25,9 @@ const MyTable = () => {
     const [css] = useStyletron();
     const {store, dispatch} = useContext(Context)
     const { loc } = useContext(SocketContext);
-    const clicked = (driver) => {
-        dispatch({type: "FILTER", filter: {label: driver, id: ""}})
-    }
+    const clicked = useCallback((driver) => {
+        dispatch({type: FILTER, filter: {label: driver, id: ""}})
+    }, [dispatch])
     return (
             <div className={css({height: '260px'})}>
                 <StyledTable>

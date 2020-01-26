@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Block } from "baseui/block";
 import {useStyletron} from 'baseui';
 
-    const Layout = ({ children }) => {
+const Layout = ({ children }) => {
     const [css] = useStyletron();
     return (
         <Block className={css({width: '90vw', marginTop: '20px', borderRadius: '15px',})}
